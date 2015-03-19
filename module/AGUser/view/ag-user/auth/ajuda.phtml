@@ -1,0 +1,45 @@
+<?php
+$form = $this->form;
+$form->setAttribute('action',$this->url('aguser-auth/ajuda',array('controller'=>'auth','action'=>'ajuda')));
+$form->prepare();
+?>
+
+
+<?php echo $this->form()->openTag($form); ?>
+
+<div class="" id="remember-email">
+
+    <?php if($this->error): ?>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <ul>
+                <li class="active"><?php echo $this->error; ?></li>
+            </ul>
+        </div>            
+    <?php endif; ?>     
+    
+    <span class="entry-title">
+        <h5><span>Ajuda <small>Esqueceu sua senha?</small></small></span></h5>
+    </span>    
+
+
+    <p>Forneça o endereço de e-mail usado ao inscrever-se no site. Enviaremos um e-mail que permitirá redefinir sua senha.</p>
+    
+    <div class="clear"></div>
+    
+    <p class="form-row">
+        <label for="Logradouro" class="">E-mail: <span class="required">*</span></label>
+        <?php echo $this->formRow($form->get('email')); ?> 
+    </p>  
+    
+    <div class="clear"></div>
+
+    <p class="form-row">
+        <a href="<?php echo $this->url('aguser-auth'); ?>" class="button cancel">Cancelar</a>
+        <?php echo $this->formSubmit($form->get('submit')); ?>
+    </p>        
+
+</div>
+
+<?php echo $this->form()->closeTag(); ?>
+

@@ -1,0 +1,41 @@
+
+<?php
+$form = $this->form;
+$form->setAttribute('action',$this->url('aguser-admin/upload',array('controller'=>'upload')));
+$form->prepare();
+?>
+
+<?php echo $this->form()->openTag($form); ?>
+
+<div class="" id="photo">
+
+    <?php if($this->error): ?>
+        <div id="alert-message" style="display: block;">
+            <div class="alert alert-danger alert-block fade in">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <h3>Upload de Imagem</h3><h4>Por favor, escolhar uma imagem do tipo .gif, .jpeg ou .png, com até <?php echo ini_get('upload_max_filesize').'B' ?></h4>
+            </div>
+        </div>    
+    <?php endif; ?>     
+    
+    <span class="entry-title">
+        <h5><span>Imagem <small>Escolha uma foto do seu computador.</small></span></h5>
+    </span>    
+
+    <p class="form-row">
+        <label for="Logradouro" class="">Foto: <span class="required">*</span></label>
+        <?php echo $this->formRow($form->get('foto')); ?> 
+    </p>  
+    
+    <div class="clear"></div>
+
+    <p class="form-row">
+        <a href="<?php echo $this->url('aguser-admin/default', array('controller' => 'users', 'action' => 'index')); ?>" class="button cancel">Cancelar</a>
+        <?php echo $this->formSubmit($form->get('submit')); ?>
+    </p>        
+
+</div>
+
+<?php echo $this->form()->closeTag(); ?>
+
+

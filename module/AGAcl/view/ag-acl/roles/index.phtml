@@ -1,0 +1,68 @@
+
+
+
+<h3>Papeis</h3>
+<br />
+
+<p>
+    <a href="<?php echo $this->url('agacl-admin-roles/default',array('controller'=>'roles','action'=>'new')); ?>">Novo</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Herança</th>
+        <th>Admin?</th>
+        <th>Ação</th>
+    </tr>
+    
+    <?php foreach($this->data as $entity): ?>
+    <tr>
+        <td><?php echo $entity->getId(); ?></td>
+        <td><?php echo $entity->getNome(); ?></td>
+        <td><?php echo $entity->getParent(); ?></td>
+        <td><?php echo $entity->getIsAdmin()?'Sim':'Não'; ?></td>
+        <td>
+            <a href="<?php echo $this->url('agacl-admin-roles/default',
+                    array('action'=>'edit','id'=>$entity->getId())); ?>">Editar</a>
+            <a href="<?php echo $this->url('agacl-admin-roles/default',
+                    array('action'=>'delete','id'=>$entity->getId())); ?>">Deletar</a>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+    
+</table>
+<br />
+
+<?php 
+
+echo $this->paginationControl($this->data,'Sliding','partials/paginator'); 
+
+$this->headScript()->captureStart(); 
+
+?>
+
+$(function(){
+    // variável para conter a url deletar
+    var url_deletar     = '<?php echo $this->url('agacl-admin-roles/default', array("action" => "delete")); ?>' + '/';
+ 
+    // qualquer link que tiver a url deletar vai sofrer um evento quando for clicada
+    $("a[href*='" + url_deletar + "']").click(function (event) {
+        // variável contendo o id referente ao botão clicado
+        var contato_id  = $(this).attr('href').split(url_deletar).pop();
+        // variável contendo mensagem da janela
+        var mensagem = "Deseja realmente apagar o registro de ID " + contato_id + "?";
+        // variável com resposta da mensagem colocada na janela
+        var confirmacao = confirm(mensagem);
+ 
+        // se a confirmação for false o fluxo é interrompido
+        if (!confirmacao)
+            // elimar o evendo do botão clicado
+            event.preventDefault();
+    });
+});
+
+<?php 
+
+$this->headScript()->captureEnd(); 

@@ -1,0 +1,9 @@
+Olá <?php echo $this->nome;?>,
+<br />
+<br />
+<p>
+    Esse email tem o objetivo de confirmar sua solicitação de senha.
+    <br />
+    Para atualizar sua senha, acesse: 
+    http://<?php echo $this->server . $this->url('aguser-auth/remember', array('remember'=>$this->remember)); ?>
+</p>

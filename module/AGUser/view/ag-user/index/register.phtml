@@ -1,0 +1,56 @@
+
+<?php
+$form = $this->form;
+$urlAction = $this->url('aguser-register', array('controller' => 'index', 'action' => 'register'));
+$form->setAttribute('action', $urlAction);
+$form->prepare();
+?>
+
+<?php echo $this->form()->openTag($form); ?>
+
+<div class="col2-set" id="customer_details">
+
+    <h2>Registro <small>Informe os dados a seguir.</small></h2>
+    
+    <?php echo $this->formHidden($form->get('id')); ?>
+    <?php echo $this->formHidden($form->get('security')); ?> 
+
+    <p class="form-row">
+        <label for="NomeCompleto" class="">Nome: <span class="required">*</span></label>
+        <?php echo $this->formRow($form->get('nome')); ?> 
+    </p>
+
+    <p class="form-row">
+        <label for="EmailValido" class="">E-mail: <span class="required">*</span></label>
+        <?php echo $this->formRow($form->get('email')); ?> 
+    </p>
+
+    <div class="clear"></div>
+
+    <p class="form-row form-row-first">
+        <label for="PassWord" class="">Senha: <span class="required">*</span></label>
+        <?php echo $this->formRow($form->get('password')); ?> 
+    </p>        
+
+    <p class="form-row form-row-last">
+        <label for="PassWordConfirmation" class="">Confirmação: <span class="required">*</span></label>
+        <?php echo $this->formRow($form->get('confirmation')); ?>
+    </p>        
+
+    <div class="clear"></div>
+
+    <p class="form-row">
+        <label for="RoleSelect" class="">Acessar Como: <span class="required">*</span></label>
+        <?php echo $this->formRow($form->get('role')->setValueOptions(array('1' => 'Visitante'))); ?> 
+    </p>
+
+    <div class="clear"></div>
+
+    <p class="form-row">
+        <a href="<?php echo $this->url('aguser-auth'); ?>" class="button cancel">Cancelar</a>
+        <?php echo $this->formSubmit($form->get('submit')); ?>
+    </p>        
+
+</div>
+
+<?php echo $this->form()->closeTag(); ?>
